@@ -1,57 +1,70 @@
 import 'package:flutter/material.dart';
 
-
 class LogMatchPage extends StatefulWidget {
-  LogMatchPage({Key key}) : super(key:key);
+  LogMatchPage({Key key}) : super(key: key);
 
   @override
-  _LogMatchPageState createState() => _LogMatchPageState();
+  _LogMatchPageState createState() => new _LogMatchPageState();
 }
 
 class _LogMatchPageState extends State<LogMatchPage> {
-  String value = "Pleae select a player name";
+  List _players = ["Emeka", "Dirushan", "Hassan", "Razmick", "Kenny", "Frank"];
+
+  List<DropdownMenuItem<String>> _dropDownMenuItems;
+  String _currentPlayers;
+
+  @override
+  void initState() {
+    _dropDownMenuItems = getDropDownMenuItems();
+    _currentPlayers = _dropDownMenuItems[0].value;
+    super.initState();
+  }
+
+  List<DropdownMenuItem<String>> getDropDownMenuItems() {
+    List<DropdownMenuItem<String>> items = new List();
+    for (String player in _players) {
+      items.add(new DropdownMenuItem(value: player, child: new Text(player)));
+    }
+    return items;
+  }
+
+  void changedDropDownItem(String selectedPlayer) {
+    setState(() {
+      _currentPlayers = selectedPlayer;
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
-    Widget buttonSection = Container(
-      child: Row(
+    Widget dropDownSection = new Container(
+        child: new Column(
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-        children: [
-          new DropdownButton<String>(
-            items: <String>['Raz', 'Hassan', 'Di', 'Emeka', 'Frank']
-                .map((String value) {
-              return new DropdownMenuItem<String>(
-                value: value,
-                child: new Text(value),
-              );
-            }).toList(),
-            onChanged: (newValue) {
-              setState(() {
-              value = newValue;
-          });
-          },
+        children: <Widget>[
+          new Text("Select player one: "),
+          new DropdownButton(
+            value: _currentPlayers,
+            items: _dropDownMenuItems,
+            hint: Text("Please select a player"),
+            onChanged: changedDropDownItem,
           ),
-          new DropdownButton<String>(
-            items: <String>['Raz', 'Hassan', 'Di', 'Emeka', 'Frank']
-                .map((String value) {
-              return new DropdownMenuItem<String>(
-                value: value,
-                child: new Text(value),
-              );
-            }).toList(),
-            onChanged: (_) {},
+          new Text("Select player two: "),
+          new DropdownButton(
+            value: _currentPlayers,
+            items: _dropDownMenuItems,
+            hint: Text("Please select a player"),
+            onChanged: changedDropDownItem,
           )
         ],
-      ),
-    );
+      ));
 
     return Scaffold(
         appBar: AppBar(
-          title: Text("Record a match here"),
+          title: Text("Record scores here"),
           backgroundColor: Colors.green,
         ),
         body: ListView(
-          children: [buttonSection],
-        ));
+          children: [dropDownSection],
+        ),
+      );
   }
 }
