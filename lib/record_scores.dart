@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'user.dart';
 
 class LogMatchPage extends StatefulWidget {
   LogMatchPage({Key key}) : super(key: key);
