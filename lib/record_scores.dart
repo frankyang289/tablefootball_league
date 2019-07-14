@@ -9,13 +9,15 @@ class LogMatchPage extends StatefulWidget {
 }
 
 class _LogMatchPageState extends State<LogMatchPage> {
-  List _players = ["Emeka", "Dirushan", "Hassan", "Razmick", "Kenny", "Frank"];
-
+  List<User> users;
+  bool sort;
   List<DropdownMenuItem<String>> _dropDownMenuItems;
   String _currentPlayers;
 
   @override
   void initState() {
+    sort = false;
+    users = User.getUsers();
     _dropDownMenuItems = getDropDownMenuItems();
     _currentPlayers = _dropDownMenuItems[0].value;
     super.initState();
@@ -23,8 +25,8 @@ class _LogMatchPageState extends State<LogMatchPage> {
 
   List<DropdownMenuItem<String>> getDropDownMenuItems() {
     List<DropdownMenuItem<String>> items = new List();
-    for (String player in _players) {
-      items.add(new DropdownMenuItem(value: player, child: new Text(player)));
+    for (User user in users) {
+      items.add(new DropdownMenuItem(value: user.playerName, child: new Text(user.playerName)));
     }
     return items;
   }
@@ -48,13 +50,20 @@ class _LogMatchPageState extends State<LogMatchPage> {
             hint: Text("Please select a player"),
             onChanged: changedDropDownItem,
           ),
+        ],
+      ));
+
+      Widget dropDownSection2 = new Container(
+        child: new Column(
+        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+        children: <Widget>[
           new Text("Select player two: "),
           new DropdownButton(
             value: _currentPlayers,
             items: _dropDownMenuItems,
             hint: Text("Please select a player"),
             onChanged: changedDropDownItem,
-          )
+          ),
         ],
       ));
 
@@ -64,7 +73,9 @@ class _LogMatchPageState extends State<LogMatchPage> {
           backgroundColor: Colors.green,
         ),
         body: ListView(
-          children: [dropDownSection],
+          children: [
+            dropDownSection,
+            dropDownSection2],
         ),
       );
   }
