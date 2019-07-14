@@ -10,10 +10,10 @@ class User {
 
   static List<User> getUsers(){
     return <User>[
-      User(playerName: "Hassan", wins: 0, losses: 0, goalsFor: 0, goalsAgainst: 0, points: 0),
+      User(playerName: "Hassan", wins: 0, losses: 0, goalsFor: 0, goalsAgainst: 0, points: 3),
       User(playerName: "Dirushan", wins: 0, losses: 0, goalsFor: 0, goalsAgainst: 0, points: 0),
       User(playerName: "Razmick", wins: 0, losses: 0, goalsFor: 0, goalsAgainst: 0, points: 0),
-      User(playerName: "Emeka", wins: 0, losses: 0, goalsFor: 0, goalsAgainst: 0, points: 0),
+      User(playerName: "Emeka", wins: 0, losses: 0, goalsFor: 0, goalsAgainst: 0, points: 6),
       User(playerName: "Kenny", wins: 0, losses: 0, goalsFor: 0, goalsAgainst: 0, points: 0),
       User(playerName: "Frank", wins: 0, losses: 0, goalsFor: 0, goalsAgainst: 0, points: 0),
     ];

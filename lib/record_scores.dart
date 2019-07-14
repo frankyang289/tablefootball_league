@@ -10,13 +10,11 @@ class LogMatchPage extends StatefulWidget {
 
 class _LogMatchPageState extends State<LogMatchPage> {
   List<User> users;
-  bool sort;
   List<DropdownMenuItem<String>> _dropDownMenuItems;
   String _currentPlayers;
 
   @override
   void initState() {
-    sort = false;
     users = User.getUsers();
     _dropDownMenuItems = getDropDownMenuItems();
     _currentPlayers = _dropDownMenuItems[0].value;
@@ -77,6 +75,6 @@ class _LogMatchPageState extends State<LogMatchPage> {
             dropDownSection,
             dropDownSection2],
         ),
-      );
+    );
   }
 }
