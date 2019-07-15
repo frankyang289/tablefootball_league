@@ -54,7 +54,7 @@ class MyHome extends StatelessWidget {
             textColor: Colors.white,
             onPressed: () {
               Navigator.push(context,
-                  MaterialPageRoute(builder: (context) => LeagueTablePage()));
+                  MaterialPageRoute(builder: (context) => LeagueTable()));
             },
           ),
         ],
